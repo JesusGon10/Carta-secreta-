@@ -1,0 +1,157 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carta Secreta</title>
+  <style>                      
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #e46464;
+    }
+    .screen {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    .active {
+      display: flex;
+    }
+    .password-screen {
+      flex-direction: column;
+    }
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 60px);
+      gap: 10px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+    .key {
+      background-color: #f8bbd0;
+      border: none;
+      border-radius: 10px;
+      font-size: 20px;
+      padding: 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .key:hover {
+      background-color: #7cbcf0;
+    }
+    .input-display {
+      border: 3px solid #000000;
+      padding: 10px;
+      border-radius: 30px;
+      width: 160px;
+      font-size: 24px;
+      margin-top: 20px;
+      letter-spacing: 8px;
+    }
+    .notepad {
+      background-color: #fff0f6;
+      border: 3px solid #7cbcf0;
+      padding: 20px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 500px;
+      text-align: left;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      line-height: 1.6;
+    }
+    .notepad h3 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div id="passwordScreen" class="screen password-screen active">
+  <h2>🔒 Enter password</h2>
+  <div class="input-display" id="inputDisplay">••••••</div>
+  <div class="keypad">
+    <button class="key" onclick="enterDigit('1')">1</button>
+    <button class="key" onclick="enterDigit('2')">2</button>
+    <button class="key" onclick="enterDigit('3')">3</button>
+    <button class="key" onclick="enterDigit('4')">4</button>
+    <button class="key" onclick="enterDigit('5')">5</button>
+    <button class="key" onclick="enterDigit('6')">6</button>
+    <button class="key" onclick="enterDigit('7')">7</button>
+    <button class="key" onclick="enterDigit('8')">8</button>
+    <button class="key" onclick="enterDigit('9')">9</button>
+    <div></div>
+    <button class="key" onclick="enterDigit('0')">0</button>
+    <div></div>
+  </div>
+</div>
+
+<div id="notepadScreen" class="screen">
+  <div class="notepad">
+    <h3>💌 Mi niña </h3>
+    <p>
+      Sé que tal vez no he sido el mejor novio.
+      He sido torpe, y a veces fallé justo cuando más quería acertar.
+      Y si alguna vez te hice sentir mal… lo siento con todo mi corazón.
+      Pero si algo tengo claro es que te amo con todo lo que soy.
+      Y cada día que pasa, me convenzo más de que no quiero una vida en la que tú no estés.
+    </p>
+    <p>
+      Quiero caminar contigo hacia el futuro.
+      Quiero que seas mi esposa, mi compañera, mi refugio, mi hogar.
+      Quiero que seas mía para siempre, de la manera más egoísta...
+      pero no lo digo por posesión, lo digo por elección:
+      porque de todas las personas del mundo, te elijo a ti.
+      Y mientras yo exista,
+      siempre va a haber alguien que esté orgulloso de ti,
+      que te admire profundamente,
+      y que te ame con todo lo que tiene.
+    </p>
+    <p>
+      Porque amar no es solo estar en los buenos momentos.
+      Amar es quedarse, aprender, construir…
+      y elegirte todos los días, incluso en la distancia, en el silencio y en el caos.
+
+      Y yo, sin duda alguna…
+      te sigo eligiendo.
+    </p>
+    <p>
+      No sé cuándo, no sé cómo…
+      pero me encantaría que algún día,
+      este amor que empezó cuando menos lo esperábamos,
+      termine en un "sí, acepto".
+      Te amo profundamente. ♡
+    </p>
+  </div>
+</div>
+
+<script>
+  const correctPassword = '912012';
+  let input = '';
+
+  function enterDigit(digit) {
+    if (input.length < 6) {
+      input += digit;
+    }
+
+    const display = document.getElementById('inputDisplay');
+    display.textContent = input.padEnd(6, '•');
+
+    if (input.length === 6) {
+      if (input === correctPassword) {
+        document.getElementById('passwordScreen').classList.remove('active');
+        document.getElementById('notepadScreen').classList.add('active');
+      } else {
+        alert('Contraseña incorecta, intenta de nuevo');
+        input = '';
+        display.textContent = '••••••';
+      }
+    }
+  }
+</script>
+
+</body>
+</html>
